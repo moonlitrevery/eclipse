@@ -1,0 +1,53 @@
+{
+  "name": "eclipse-desktop",
+  "productName": "Eclipse",
+  "version": "0.1.0",
+  "description": "Eclipse desktop client: the Eclipse web app in its own window, with browser sign-in, tray and screen sharing",
+  "author": "J. Bruschi",
+  "license": "MIT",
+  "main": "src/main/main.js",
+  "private": true,
+  "eclipse": {
+    "appUrl": "https://eclipse.example.com"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "node scripts/dev.js",
+    "dev:server": "node dev/server.js",
+    "icon": "node scripts/make-icon.js",
+    "test": "node --test test/",
+    "dist": "electron-builder --linux AppImage --publish never"
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "app.eclipse.desktop",
+    "productName": "Eclipse",
+    "files": [
+      "src/**",
+      "assets/**",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Network",
+      "icon": "assets/icon.png",
+      "desktop": {
+        "entry": {
+          "Keywords": "chat;voice;friends;",
+          "StartupWMClass": "Eclipse"
+        }
+      }
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.png"
+    }
+  }
+}
